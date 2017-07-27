@@ -1,0 +1,144 @@
+﻿<Window x:Class="Client.MainStart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="MainStart" Height="473" MinHeight="473" MaxHeight="473" Width="700">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="image/main1.jpg">
+            </ImageBrush>
+        </Grid.Background>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border  CornerRadius="0" Background="Orange" Opacity="0.3">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderBrush="LightGray" BorderThickness="3" CornerRadius="0" Background="LightBlue" Opacity="1" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid x:Name="LoginGrid" >
+            <Grid.OpacityMask>
+                <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                    <GradientStop Color="#00000000" Offset="0"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.OpacityMask>
+            <Grid.Background>
+                <ImageBrush ImageSource="image/Login.jpg"/>
+            </Grid.Background>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation From="1" To="0" Duration="0:0:1.5" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[1].Offset"/>
+                                <DoubleAnimation From="1" To="0" Duration="0:0:1" BeginTime="0:0:0.5" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Offset"/>
+                                <ColorAnimation To="#FF000000" Duration="0" Storyboard.TargetProperty="OpacityMask.(GradientBrush.GradientStops)[2].Color"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Grid.Triggers>
+            <Button Content="登录" Height="48"  HorizontalAlignment="Left" Margin="300,305,0,0" Name="LoginBtn" VerticalAlignment="Top" Width="115"  Background="Transparent"  FontSize="24" FontFamily="微软雅黑"  Foreground="Black" Click="LoginBtn_Click" />
+            <Label x:Name="nameL" Content="用户名:" FontFamily="微软雅黑" FontSize="24" Width="100" Height="50" Margin="230,162,362,230"/>
+            <TextBox Height="35" HorizontalAlignment="Left" Margin="350,167,0,0" Name="NameText" VerticalAlignment="Top" Width="165"  FontSize="22px" Background="Transparent" FontWeight="Bold"/>
+            <Label x:Name="passwL" Content="密码:" FontFamily="微软雅黑" FontSize="24" Width="100" Height="50" Margin="230,212,362,180"/>
+            <PasswordBox Height="35" HorizontalAlignment="Left" Margin="350,217,0,0" Name="PswText" VerticalAlignment="Top" Width="165" FontSize="28px" Background="Transparent" PasswordChar="*" FontWeight="Bold" />
+            <Button Background="Transparent" Content="注册" FontFamily="微软雅黑" FontSize="24" Foreground="Black" Height="48" HorizontalAlignment="Left" Margin="430,305,0,0" Name="btnquxiao" VerticalAlignment="Top" Width="115" Click="RegistBtn_Click" />
+            <Label x:Name="pwdLable" Content="密码不能为空" HorizontalAlignment="Left" Margin="400,144,0,0" VerticalAlignment="Top" Width="76" Visibility="Hidden" Foreground="#FF0FF024"/>
+
+            <Label x:Name="nameLabel" Content="用户名不能为空" HorizontalAlignment="Left" Margin="400,75,0,0" VerticalAlignment="Top" Width="93" Visibility="Hidden"/>
+        </Grid>
+        <Grid x:Name="mainstart" Visibility="Collapsed">
+            <!--修改-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="43*"/>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="291*"/>
+                <RowDefinition Height="43*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="463*"/>
+                <ColumnDefinition Width="229*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Content="退出" Name="btnLogout" Margin="370 5 20 5" Click="btnLogout_Click"/>
+            <ListBox x:Name="listBoxRooms"                      
+                     Grid.Column="0"
+                     Grid.Row="1"
+                     Grid.RowSpan="2"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox.Background>
+                    <ImageBrush ImageSource="image/room.jpg"></ImageBrush>
+                </ListBox.Background>
+            </ListBox>
+            <Grid x:Name="gridRoom" Grid.Row="0" Grid.RowSpan="4" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="46*"/>
+                    <RowDefinition Height="333*"/>
+                    <RowDefinition Height="43*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Name="stackPanelRoomTip" Grid.Row="0" Grid.Column="0"
+                        Orientation="Horizontal" >
+                    <TextBlock Name="textBlockRoomNumber" Text="房间号：" Margin="5 0 0 0" VerticalAlignment="Center" FontSize="20"/>
+                    <TextBlock Name="textBlockBlackUserName" Text="黑方：" Margin="10 0 0 0" VerticalAlignment="Center" FontSize="20"/>
+                    <TextBlock Name="textBlockWhiteUserName" Text="白方：" Margin="10 0 0 0" VerticalAlignment="Center" FontSize="20"/>
+                    <StackPanel Name="stackPanelGameTip" Orientation="Horizontal" Margin="20 0 0 0" VerticalAlignment="Center" >
+                        <TextBlock Text="该" FontSize="20"/>
+                        <Image Name="blackImage" Visibility="Visible" Margin="5 0 0 0" Stretch="None" Source="image/black.gif"/>
+                        <Image Name="whiteImage" Visibility="Collapsed" Margin="5 0 0 0" Stretch="None" Source="image/white.gif"/>
+                        <TextBlock Margin="5 0 0 0" Text="落子" FontSize="20"/>
+                    </StackPanel>
+                </StackPanel>
+                <Canvas Name="canvas1" Grid.Column="0" Grid.Row="1" Margin="0,0,135,10">
+                    <Image Name="imageGameTable"  Source="image/chessboard.jpg"
+                        MouseDown="imageGameTable_MouseDown"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="339" Width="466" RenderTransformOrigin="0.494,0.012"/>
+                </Canvas>
+                <DockPanel Grid.Column="0" Grid.Row="2">
+                    <Button Name="btnStart" Click="btnStart_Click"  Content="开始" Margin="5 0 0 0" Width="40" />
+                    <Button Name="btnReturn" Content="返回大厅" Margin="5 0 0 0" Width="56" Click="btnReturn_Click"/>
+                    <TextBlock Text="对话：" Margin="5 0 0 0" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                    <Button Name="btnSend" Click="btnSend_Click" Content="发送" Width="40" DockPanel.Dock="Right" Margin="5 0 5 0"/>
+                    <TextBox Name="textBoxTalk" KeyDown="textBoxTalk_KeyDown"/>
+                </DockPanel>
+            </Grid>
+            <DockPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" >
+                <Image Source="image/player1.jpg" Height="68" Margin="20,15,0,10" Cursor="Hand" MouseDown="Image_MouseDown_perMessage"/>
+                <Label x:Name="userLabel" Content="nihao" Margin="20, 30, 30, 30"  FontFamily="微软雅黑" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            </DockPanel>
+
+            <StackPanel x:Name="St1"  Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
+                <TextBlock Name="textBlockMessage" Grid.Row="0"
+                     Text="在线人数：0" Background="Beige" TextAlignment="Center"/>
+                <ListBox Name="listBoxMessage"
+                         BorderThickness="1" 
+                         FontFamily="微软雅黑"
+                         Height="321"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

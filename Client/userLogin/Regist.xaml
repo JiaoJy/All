@@ -1,0 +1,53 @@
+﻿<Window x:Class="Client.userLogin.Regist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.userLogin"
+        mc:Ignorable="d"
+        Title="RegistPage" Height="360" Width="350">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border  CornerRadius="0" Background="Orange" Opacity="0.3">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderBrush="LightGray" BorderThickness="3" CornerRadius="0" Background="LightBlue" Opacity="1" >
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush ImageSource="../image/regist.jpg"/>
+        </Grid.Background>
+        <Button x:Name="Submit" FontFamily="微软雅黑" FontSize="15" Background="Transparent"  Content="确认" HorizontalAlignment="Left" Margin="68,275,0,0" VerticalAlignment="Top"   Height="25" Width="75" Click="Submit_Click"/>
+        <TextBox x:Name="rgtUserName" HorizontalAlignment="Left" Height="25" Margin="103,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Opacity="0.3"/>
+        <Label Content="用户名：" FontFamily="微软雅黑" HorizontalAlignment="Left" Margin="27,72,0,0" VerticalAlignment="Top" Width="116"/>
+        <PasswordBox x:Name="rgtPassWord" HorizontalAlignment="Left" Height="25" Margin="103,117,0,0" Password="" VerticalAlignment="Top" Width="120" Opacity="0.3"/>
+        <Label Content="密码：" FontFamily="微软雅黑" HorizontalAlignment="Left" Margin="27,118,0,0" VerticalAlignment="Top" Width="116"/>
+        <PasswordBox x:Name="RePassWord" HorizontalAlignment="Left" Height="25" Margin="103,192,0,0"  Password="" VerticalAlignment="Top" Width="120" Opacity="0.3"/>
+        <Label Content="重复密码：" FontFamily="微软雅黑" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="116"/>
+        <Button x:Name="Cancel" Content="清空所填" FontFamily="微软雅黑" FontSize="15" HorizontalAlignment="Left" Margin="185,275,0,0" VerticalAlignment="Top" Background="Transparent" Width="75" Height="25" Click="Cancel_Click"/>
+        <Label x:Name="rePwdLable" Content="两次密码不一致" FontFamily="微软雅黑" HorizontalAlignment="Left" Margin="239,189,0,0" VerticalAlignment="Top" Width="93" Foreground="Red" Visibility="Hidden"/>
+        <Label x:Name="pwdLable" Content="密码不能为空" FontFamily="微软雅黑" HorizontalAlignment="Left" Margin="239,118,0,0" VerticalAlignment="Top" Width="93" Visibility="Hidden" Foreground="Red"/>
+        <Label x:Name="nameLabel" Content="用户名不能为空"  Foreground="Red" FontFamily="微软雅黑" HorizontalAlignment="Left" Margin="239,78,0,0" VerticalAlignment="Top" Width="93" Visibility="Hidden"/>
+    </Grid>
+</Window>
